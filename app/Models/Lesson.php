@@ -11,12 +11,15 @@ class Lesson extends Model
 
     protected $primaryKey = "lesson_id";
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'price'
     ];
 
+    // many to many relationship with course
     public function courses() {
-        return $this->belongsToMany(Course::class,'course_lessons','course_id','lesson_id');
+        return $this->belongsToMany(Course::class,'course_lessons','lesson_id','course_id');
     }
 }
